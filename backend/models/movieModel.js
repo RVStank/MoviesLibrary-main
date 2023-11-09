@@ -30,4 +30,3 @@ movieSchema.virtual('rating').get(function(){
 });
 
 export const Movie = mongoose.model('Movie', movieSchema);
-//test

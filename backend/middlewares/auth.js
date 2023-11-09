@@ -2,7 +2,7 @@ import verify from 'jsonwebtoken';
 import User from '../models/userModel.js';
 
 const authenticate = async (req, res, next) => {
-    const token = req.headers.authorizations?.split(' ')[1];
+    const token = req.headers.authorization?.split(' ')[1];
 
     if (!token)
         return res.status(401).json({ message: 'Authentication required' });
@@ -18,8 +18,8 @@ const authenticate = async (req, res, next) => {
         next();
     }
     catch (error) {
-        response.status(401).json({ message: 'Invalid token' })
+        res.status(401).json({ message: 'Invalid token' })
     }
 }
 
-export default { authenticate };
+export default authenticate;

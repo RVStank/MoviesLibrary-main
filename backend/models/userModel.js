@@ -31,8 +31,8 @@ userSchema.pre('save', async function (next) {
     if (!user.isModified('password')) return next();
 
     try {
-        const salt = await genSalt();
-        user.password = await hash(user.password, salt);
+        // const salt = await genSalt();
+        // user.password = await hash(user.password, salt);
         next();
     }
     catch (error) {
