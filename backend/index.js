@@ -1,10 +1,14 @@
 import express, { response } from "express";
-import { PORT, mongoDBURL } from "./config.js";
+import { PORT, mongoDBURL, SECRET_KEY } from "./config.js";
 import mongoose from "mongoose";
 import { Movie } from "./models/movieModel.js";
 import moviesRoute from "./routes/moviesRoute.js"
 import authRoutes from './routes/authRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import dotenv from 'dotenv';
+
+dotenv.config();
+console.log(SECRET_KEY);
 
 const app = express();
 

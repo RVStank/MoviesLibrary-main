@@ -1,6 +1,7 @@
-import sign from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { hash } from 'bcrypt';
 import User from '../models/userModel.js';
+import { SECRET_KEY } from "../config.js";
 
 // Register
 const register = async (req, res, next) => {
@@ -21,6 +22,8 @@ const login = async (req, res, next) => {
     const { username, password } = req.body;
 
     try {
+        console.log('SECRET_KEY:', SECRET_KEY);
+
         const user = await User.findOne({ username });
 
         if (!user)
@@ -30,9 +33,10 @@ const login = async (req, res, next) => {
         if (!passwordMatch)
             return res.status(401).json({ message: 'Incorrect password' });
 
-        const token = sign({ userId: user._id }, process.env.SECRET_KEY, {
+        const token = jwt.sign({ userId: user._id }, SECRET_KEY, {
             expiresIn: '1 hour'
         });
+
         res.json({ token });
     } catch (error) {
         next(error);
