@@ -34,6 +34,17 @@ router.post('/', async (request, response) => {
         response.status(500).send({ message: error.message });
     }
 });
+
+/**
+ * @swagger
+ * /movies:
+ *   get:
+ *     summary: Get a list of movies
+ *     description: Returns a list of movies.
+ *     responses:
+ *       200:
+ *         description: A list of movies.
+ */
 // Get all Movies
 router.get('/', async (request, response) => {
     try {
